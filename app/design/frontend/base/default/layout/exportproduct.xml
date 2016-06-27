@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <exportproduct_index_index>
+    <reference name="content">
+      <block type="core/template" name="exportproduct" template="exportproduct/success.phtml"/>
+    </reference>
+  </exportproduct_index_index>
+  <exportproduct_index_error>
+    <reference name="content">
+      <block type="core/template" name="exportproduct" template="exportproduct/error.phtml"/>
+    </reference>
+  </exportproduct_index_error>
+</layout>

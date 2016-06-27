@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Cis
+ * @package    Cis_Postalcode
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Cis_Exportproduct>
+            <version>0.1.1</version>
+        </Cis_Exportproduct>
+    </modules>
+    <frontend>
+	<routers>
+            <exportproduct>
+                <use>standard</use>
+                <args>
+                    <module>Cis_Exportproduct</module>
+                    <frontName>exportproduct</frontName>
+                </args>
+            </exportproduct>
+        </routers>
+	<layout>
+	    <updates>
+		    <exportproduct>
+			<file>exportproduct.xml</file>
+		    </exportproduct>
+	    </updates>
+	</layout>
+    </frontend>
+    <admin>
+        <routers>
+	    <exportproduct>
+		<use>admin</use>
+		<args>
+		    <module>Cis_Exportproduct</module>
+		    <frontName>exportproduct</frontName>
+		</args>
+	    </exportproduct>
+        </routers>
+    </admin>
+    <adminhtml>
+	<menu>
+	    <exportproduct module="exportproduct">
+		<title>Export Product</title>
+		<sort_order>51</sort_order>               
+		<children>
+		    <items module="exportproduct">
+			<title>Export Product URL Setting</title>
+			<sort_order>0</sort_order>
+			<action>exportproduct/adminhtml_index</action>
+		    </items>
+		</children>
+	    </exportproduct>
+	</menu>
+	<acl>
+	    <resources>
+		<all>
+		    <title>Allow Everything</title>
+		</all>
+		<admin>
+		    <children>
+			<system>
+			    <children>
+				<config>
+				    <children>
+					<exportproduct>
+					    <title>Cis - All</title>
+					</exportproduct>
+				    </children>
+				</config>
+			    </children>
+			</system>
+		    </children>
+		</admin>
+	    </resources>
+	</acl>
+	<layout>
+	    <updates>
+		    <exportproduct>
+			<file>exportproduct.xml</file>
+		    </exportproduct>
+	    </updates>
+	</layout>
+    </adminhtml>
+    <global>
+        <helpers>
+            <exportproduct>
+                <class>Cis_Exportproduct_Helper</class>
+            </exportproduct>
+        </helpers>
+	<blocks>
+            <exportproduct>
+                <class>Cis_Exportproduct_Block</class>
+            </exportproduct>
+        </blocks>
+	<models>
+            <exportproduct>
+                <class>Cis_Exportproduct_Model</class>
+                <resourceModel>exportproduct_mysql4</resourceModel>
+            </exportproduct>
+            <exportproduct_mysql4>
+                <class>Cis_Exportproduct_Model_Mysql4</class>
+                <entities>
+                    <exportproduct>
+                        <table>exportproductdata</table>
+                    </exportproduct>
+                </entities>
+            </exportproduct_mysql4>
+        </models>
+        <resources>
+            <exportproduct_setup>
+                <setup>
+                    <module>Cis_Exportproduct</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </exportproduct_setup>
+            <exportproduct_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </exportproduct_write>
+            <exportproduct_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </exportproduct_read>
+        </resources>
+	<template>
+	    <email>
+		<exportproduct_template module="exportproduct">
+		    <label>Export Orders Template</label>
+		    <file>exportorders.html</file>
+		    <type>html</type>
+		</exportproduct_template>
+	    </email>
+	</template>
+    </global>
+</config>
