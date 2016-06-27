@@ -1,0 +1,32 @@
+{
+    "name": "careware/order_export",
+    "type": "magento-module",
+    "description": "Export order in excel file",
+    "authors": [
+        {
+            "name": "Jitendra Mandloi",
+            "email": "jitendra.m@cisinlabs.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/magento-hackathon/magento-composer-installer"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer":"*"
+    },
+    "extra": {
+        "magento-root-dir": "./",
+        "magento-deploystrategy": "link",
+        "map": [
+          ["./app/design/adminhtml/default/default/layout/exportproduct.xml", "./app/design/adminhtml/default/default/layout/exportproduct.xml"],
+          ["./app/design/frontend/base/default/layout/exportproduct.xml", "./app/design/frontend/base/default/layout/exportproduct.xml"],
+          ["./app/design/frontend/base/default/template/exportproduct", "./app/design/frontend/base/default/template/exportproduct"],
+          ["./app/etc/modules/Cis_Exportproduct.xml", "./app/etc/modules/Cis_Exportproduct.xml"],
+          ["./app/code/local/Cis/Exportproduct", "./app/code/local/Cis/Exportproduct"],
+          ["./lib/cis", "./lib/cis"]
+        ]
+    }
+}
