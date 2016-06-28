@@ -60,17 +60,15 @@ class Cis_Exportproduct_Block_Adminhtml_Exportproduct_Grid extends Mage_Adminhtm
           'index'     => 'store_ids',
       ));
       
-      if ( !Mage::app()->isSingleStoreMode() ) {
-	  $this->addColumn('store_ids', array(
-	      'header' => Mage::helper('exportproduct')->__('Stores'),
-	      'index' => 'store_ids',
-	      'type' => 'store',
-	      'store_all' => true,
-	      'store_view' => true,
-	      'sortable' => true,
-	      'filter_condition_callback' => array($this, '_filterStoreCondition'),
-	  ));
-      }
+      $this->addColumn('store_ids', array(
+	  'header' => Mage::helper('exportproduct')->__('Stores'),
+	  'index' => 'store_ids',
+	  'type' => 'store',
+	  'store_all' => true,
+	  'store_view' => true,
+	  'sortable' => true,
+	  'filter_condition_callback' => array($this, '_filterStoreCondition'),
+      ));
       
       $this->addColumn('export_product_url', array(
           'header'    => Mage::helper('exportproduct')->__('Export Product URLs'),
