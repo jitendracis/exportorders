@@ -51,7 +51,7 @@ class Cis_Exportproduct_Adminhtml_IndexController extends Mage_Adminhtml_Control
 	public function saveAction() {
 		if ($data = $this->getRequest()->getPost()) {
 			
-			if(isset($data['stores'])) {
+			if(isset($data['stores']) && $data['stores'] != '') {
 				if(in_array('0',$data['stores'])){
 					$data['store_ids'] = '0';
 				}
@@ -59,6 +59,9 @@ class Cis_Exportproduct_Adminhtml_IndexController extends Mage_Adminhtml_Control
 					$data['store_ids'] = implode(",", $data['stores']);
 				}
 				unset($data['stores']);
+			}else{
+				
+				$data['store_ids'] = Mage::app()->getDefaultStoreView()->getId();
 			}
 			
 
