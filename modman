@@ -4,3 +4,4 @@ app/design/frontend/base/default/template/exportproduct app/design/frontend/base
 app/etc/modules/Cis_Exportproduct.xml   app/etc/modules/Cis_Exportproduct.xml
 app/code/local/Cis/Exportproduct    app/code/local/Cis/Exportproduct
 lib/cis lib/cis
+app/locale/en_US/template/email/exportorders.html app/locale/en_US/template/email/exportorders.html
