@@ -25,7 +25,7 @@ class Cis_Exportproduct_Helper_Data extends Mage_Core_Helper_Abstract
 					    ->addFieldToSelect(array('order_id','sku','name','qty_ordered','price_incl_tax','row_total_incl_tax'))
 					    ->addFieldToFilter('sku',array('in' => explode(',',$product_ids)));
 	    $collection->getSelect()->joinInner(array('order' => Mage::getSingleton('core/resource')->getTableName('sales/order')),"order.entity_id = main_table.order_id and order.store_id in ($store_ids)",
-		array('customer_id','store_id','increment_id','created_at'))->joinInner(array('customer' => Mage::getSingleton('core/resource')->getTableName('sales/order_address')),"customer.parent_id = order.entity_id and customer.address_type = '$address_type'", array('firstname','lastname','company','street','postcode','city','region','country_id','email','telephone'))->order('main_table.order_id DESC');
+		array('customer_id','store_id','increment_id','created_at','customer_firstname','customer_lastname','customer_email'))->joinInner(array('customer' => Mage::getSingleton('core/resource')->getTableName('sales/order_address')),"customer.parent_id = order.entity_id and customer.address_type = '$address_type'", array('company','street','postcode','city','region','country_id','telephone'))->order('main_table.order_id DESC');
 	    
 	    return $collection;
 	}catch(Exception $e) {
@@ -67,10 +67,10 @@ class Cis_Exportproduct_Helper_Data extends Mage_Core_Helper_Abstract
     
         foreach ($order_customer_collection as $data) {
             $writer->writeSheetRow('Sheet1', array(
-                $data->getFirstname().' '.$data->getLastname(),
+                $data->getCustomerFirstname().' '.$data->getCustomerLastname(),
                 $data->getCompany(),
 		$data->getStreet().', '.$data->getPostcode().', '.$data->getCity().', '.$data->getRegion().', '.$data->getCountryId(),
-                $data->getEmail(),
+                $data->getCustomerEmail(),
 		$data->gettelephone(),
 		$data->getIncrementId(),
 		$data->getName(),
