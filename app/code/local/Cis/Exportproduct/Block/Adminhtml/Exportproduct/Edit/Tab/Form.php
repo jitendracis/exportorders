@@ -51,8 +51,7 @@ class Cis_Exportproduct_Block_Adminhtml_Exportproduct_Edit_Tab_Form extends Mage
 	));
       } else {
 	$fieldset->addField('store_ids', 'hidden', array(
-	      'name' => 'stores[]',
-	      'value' => Mage::app()->getStore(true)->getId(),
+	      'name' => 'stores'
 	));
       }
       
