@@ -21,12 +21,19 @@ class Cis_Exportproduct_Helper_Data extends Mage_Core_Helper_Abstract
 	$address_type = 'shipping';
 	
 	try{
+	    if($store_ids != 0){
 	    $collection = Mage::getResourceModel('sales/order_item_collection')
 					    ->addFieldToSelect(array('order_id','sku','name','qty_ordered','price_incl_tax','row_total_incl_tax'))
 					    ->addFieldToFilter('sku',array('in' => explode(',',$product_ids)));
 	    $collection->getSelect()->joinInner(array('order' => Mage::getSingleton('core/resource')->getTableName('sales/order')),"order.entity_id = main_table.order_id and order.store_id in ($store_ids)",
 		array('customer_id','store_id','increment_id','created_at','customer_firstname','customer_lastname','customer_email'))->joinInner(array('customer' => Mage::getSingleton('core/resource')->getTableName('sales/order_address')),"customer.parent_id = order.entity_id and customer.address_type = '$address_type'", array('company','street','postcode','city','region','country_id','telephone'))->order('main_table.order_id DESC');
-	    
+	    }else{
+	    $collection = Mage::getResourceModel('sales/order_item_collection')
+					    ->addFieldToSelect(array('order_id','sku','name','qty_ordered','price_incl_tax','row_total_incl_tax'))
+					    ->addFieldToFilter('sku',array('in' => explode(',',$product_ids)));
+	    $collection->getSelect()->joinInner(array('order' => Mage::getSingleton('core/resource')->getTableName('sales/order')),"order.entity_id = main_table.order_id",
+		array('customer_id','store_id','increment_id','created_at','customer_firstname','customer_lastname','customer_email'))->joinInner(array('customer' => Mage::getSingleton('core/resource')->getTableName('sales/order_address')),"customer.parent_id = order.entity_id and customer.address_type = '$address_type'", array('company','street','postcode','city','region','country_id','telephone'))->order('main_table.order_id DESC');	
+	    }
 	    return $collection;
 	}catch(Exception $e) {
             return $e->getMessage();
