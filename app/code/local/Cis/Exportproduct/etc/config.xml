@@ -141,4 +141,11 @@
 	    </email>
 	</template>
     </global>
+    <default>
+	<exportproduct>
+	    <exportproduct_group>
+		<enable>1</enable>
+	    </exportproduct_group>
+	</exportproduct>
+    </default>
 </config>
