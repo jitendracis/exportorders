@@ -16,8 +16,8 @@ CREATE TABLE {$this->getTable('exportproductdata')} (
   `exportproduct_extra1` varchar(255) NOT NULL default '',
   `exportproduct_extra2` varchar(255) NOT NULL default '',
   `status` smallint(6) NOT NULL default '1',
-  `exportproduct_url_create_date` datetime default CURRENT_TIMESTAMP,
-  `exportproduct_url_update_date` datetime Null,
+  `exportproduct_url_create_date` timestamp default CURRENT_TIMESTAMP,
+  `exportproduct_url_update_date` timestamp Null,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
     ");
